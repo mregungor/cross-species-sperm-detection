@@ -1,4 +1,4 @@
-# Cross-Species Transfer Learning for Brightfield Spermatozoa Detection — Reference Implementation
+# Cross-Species Transfer Learning for Brightfield Spermatozoa Detection — Analysis and Statistical Pipeline
 
 Repository: <https://github.com/mregungor/cross-species-sperm-detection>
 
@@ -6,7 +6,7 @@ This repository accompanies the paper:
 
 > Güngör, E. *Cross-Species Transfer Learning for Brightfield Spermatozoa Detection: Characterising Zero-Shot Variance and Few-Shot Stabilisation on Bull Microscopy.* (Full venue and year will be added upon publication.)
 
-It provides the **evaluation and statistical-analysis pipeline** used to produce the headline tables and figures of the paper from the raw three-seed metric records. The training and data-preparation code is part of an ongoing research programme and is available from the corresponding author upon reasonable request.
+It releases the **evaluation and statistical-analysis layer** of the study: the canonical per-seed scalar metric records together with the scripts that aggregate them into the manuscript's headline tables and figures (multi-seed means and SDs, Levene's test, paired *t*-tests with Holm--Bonferroni correction, and the learning-curve and variance-evolution figures). The training and data-preparation code is part of an ongoing research programme and is available from the corresponding author upon reasonable request; this repository is therefore not a full model-training reference implementation, but rather the reproducibility layer that lets a reader regenerate every numerical claim in the paper from the released CSV.
 
 ## What this repository contains
 
