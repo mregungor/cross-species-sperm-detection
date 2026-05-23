@@ -1,12 +1,12 @@
-"""Transfer-variance characterisation: source vs zero-shot SD with Levene's test.
+"""Transfer-variance characterization: source vs zero-shot SD with Levene's test.
 
 Reproduces Table 4 from data/three_seed_results.csv. For each model, compares the
 three-seed source-domain mAP50-95 distribution against the three-seed bull
 zero-shot mAP50 distribution under the null of equal variance.
 
-Note: we use the classical mean-centred Levene statistic (center="mean")
+Note: we use the classical mean-centered Levene statistic (center="mean")
 rather than scipy's default Brown--Forsythe (center="median"), matching the
-test reported in the paper. With n=3 the two centring choices can disagree
+test reported in the paper. With n=3 the two centering choices can disagree
 materially on the resulting p-value.
 """
 from pathlib import Path
