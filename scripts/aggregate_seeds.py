@@ -1,6 +1,6 @@
 """Aggregate three-seed metric scores into mean +/- SD per (model, operating point).
 
-Reproduces Table 1 (source-domain baselines) and Table 3 (few-shot learning curve)
+Reproduces Table 2 (source-domain baselines) and Table 4 (few-shot learning curve)
 from data/three_seed_results.csv.
 """
 from pathlib import Path

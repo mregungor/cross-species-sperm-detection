@@ -1,6 +1,6 @@
 """Paired t-tests on three-seed scalar metric scores with Holm--Bonferroni correction.
 
-Reproduces Table 5. Family size = 24 per metric (6 model pairs x 4 operating points).
+Reproduces Table 6. Family size = 24 per metric (6 model pairs x 4 operating points).
 """
 from itertools import combinations
 from pathlib import Path

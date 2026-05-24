@@ -1,6 +1,6 @@
 """Transfer-variance characterization: source vs zero-shot SD with Levene's test.
 
-Reproduces Table 4 from data/three_seed_results.csv. For each model, compares the
+Reproduces Table 5 from data/three_seed_results.csv. For each model, compares the
 three-seed source-domain mAP50-95 distribution against the three-seed bull
 zero-shot mAP50 distribution under the null of equal variance.
 

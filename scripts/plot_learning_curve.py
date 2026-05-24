@@ -1,7 +1,7 @@
-"""Plot the bull few-shot learning curve (Figure 3) and the variance evolution (Figure 4).
+"""Plot the bull few-shot learning curve (paper Figure 1) and variance evolution (paper Figure 2).
 
-Reads data/three_seed_results.csv and writes figures/fig3_learning_curve.pdf and
-figures/fig4_variance_evolution.pdf.
+Reads data/three_seed_results.csv and writes figures/fig1_learning_curve.pdf and
+figures/fig2_variance_evolution.pdf.
 """
 from pathlib import Path
 import pandas as pd
@@ -12,7 +12,7 @@ CSV = ROOT / "data" / "three_seed_results.csv"
 FIG = ROOT / "figures"
 FIG.mkdir(exist_ok=True)
 
-MODELS = ["YOLO11m", "YOLO26m", "YOLO26n"]
+MODELS = ["YOLOv8m", "YOLO11m", "YOLO26m", "YOLO26n"]
 OP_TO_FRAMES = {"bull_zs": 0, "bull_fs20": 20, "bull_fs50": 50, "bull_fs100": 100}
 
 
@@ -30,7 +30,7 @@ def plot_learning_curve(df: pd.DataFrame) -> None:
             m = agg[agg.model == model].sort_values("frames")
             ax.errorbar(m.frames, m["mean"], yerr=m["std"], marker="o", capsize=3, label=model)
         ax.set_xlabel("Target frames"); ax.set_ylabel(metric); ax.grid(alpha=0.3); ax.legend()
-    fig.tight_layout(); fig.savefig(FIG / "fig3_learning_curve.pdf"); plt.close(fig)
+    fig.tight_layout(); fig.savefig(FIG / "fig1_learning_curve.pdf"); plt.close(fig)
 
 
 def plot_variance_evolution(df: pd.DataFrame) -> None:
@@ -47,14 +47,14 @@ def plot_variance_evolution(df: pd.DataFrame) -> None:
             sds.append(vals.std(ddof=1) if len(vals) >= 2 else None)
         ax.plot([r[2] for r in regimes], sds, marker="s", label=model)
     ax.set_ylabel("Inter-seed SD"); ax.set_yscale("log"); ax.grid(alpha=0.3, which="both"); ax.legend()
-    fig.tight_layout(); fig.savefig(FIG / "fig4_variance_evolution.pdf"); plt.close(fig)
+    fig.tight_layout(); fig.savefig(FIG / "fig2_variance_evolution.pdf"); plt.close(fig)
 
 
 def main() -> None:
     df = pd.read_csv(CSV)
     plot_learning_curve(df)
     plot_variance_evolution(df)
-    print(f"Wrote {FIG/'fig3_learning_curve.pdf'} and {FIG/'fig4_variance_evolution.pdf'}")
+    print(f"Wrote {FIG/'fig1_learning_curve.pdf'} and {FIG/'fig2_variance_evolution.pdf'}")
 
 
 if __name__ == "__main__":
