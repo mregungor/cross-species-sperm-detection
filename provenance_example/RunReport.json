@@ -1,0 +1,57 @@
+{
+  "_comment": "Example consolidated provenance record (RunReport) emitted per training run (run: baseline_yolo26m_bf_seed42, the seed-42 YOLO26m source-domain baseline). Absolute machine paths and the hostname have been redacted to placeholders; all hyperparameters, the seed, environment identification, and final aggregate metrics are the real recorded values. One such record is serialized for every run in the study; the full set is available from the corresponding author on reasonable academic request together with the training code.",
+  "run_name": "baseline_yolo26m_bf_seed42",
+  "task": "detection",
+  "dataset": "human_brightfield",
+  "model": "yolo26m",
+  "config": {
+    "epochs": 100,
+    "imgsz": 640,
+    "batch": 32,
+    "device": "0",
+    "patience": 30,
+    "optimizer_requested": "SGD",
+    "optimizer_actual": "SGD",
+    "lr_actual": 0.002278,
+    "momentum_actual": 0.937,
+    "lr0_requested": null,
+    "momentum_requested": null,
+    "weight_decay_requested": null,
+    "deterministic": true,
+    "seed": 42,
+    "data_yaml": "<data_root>/human_brightfield/data.yaml",
+    "split_manifest": "split_manifest.json"
+  },
+  "environment": {
+    "platform": "Windows-11-10.0.22631-SP0",
+    "python": "3.12.6",
+    "torch": "2.6.0+cu124",
+    "cuda_available": true,
+    "cuda_version": "12.4",
+    "cudnn": "90100",
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "gpu_vram_gb": 25.8,
+    "pip_freeze": "pip_freeze.txt (full environment snapshot serialized alongside this record)"
+  },
+  "metrics": {
+    "mAP50": 0.9827253348244331,
+    "mAP50-95": 0.6209088544403707,
+    "precision": 0.9523809249309396,
+    "recall": 0.9467683598050007,
+    "per_class": {
+      "sperm": 0.6209088544403707
+    },
+    "_note": "Final aggregate source-domain validation metrics. Per-epoch metrics are recorded in results.csv (not reproduced here)."
+  },
+  "throughput": {
+    "fps_mean": 63.14,
+    "fps_std": 0.68,
+    "imgsz": 640,
+    "batch": 1,
+    "iters": 100,
+    "warmup": 20
+  },
+  "created_utc": "2026-04-21T17:28:56Z",
+  "host": "<workstation>",
+  "git_hash": "nogit"
+}

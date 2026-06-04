@@ -24,6 +24,9 @@ cross-species-sperm-detection/
 │   ├── levene_variance.py         # Table 5 (variance characterization)
 │   ├── paired_ttest_holm.py       # Table 6 (paired t-tests with Holm correction)
 │   └── plot_learning_curve.py     # Figures 1 and 2 (learning curve, variance evolution)
+├── provenance_example/
+│   ├── RunReport.json             # Example per-run provenance record (redacted paths)
+│   └── split_manifest.json        # Example per-run split manifest with SHA-256 hashes
 ├── figures/                       # Generated outputs (fig1_*, fig2_*)
 ├── requirements.txt
 ├── LICENSE
@@ -37,6 +40,7 @@ cross-species-sperm-detection/
 - `scripts/levene_variance.py` — produces Table 5 (transfer-variance characterization with the classical mean-centered Levene's test, matching the paper).
 - `scripts/paired_ttest_holm.py` — produces Table 6 (paired *t*-tests with Holm--Bonferroni correction, family size 24 per metric: 6 model pairs × 4 operating points). Sample sizes follow the multi-seed design: *n* = 3 at zero-shot and fs-20, *n* = 2 at fs-50 and fs-100.
 - `scripts/plot_learning_curve.py` — produces Figure 1 (learning curve, `figures/fig1_learning_curve.pdf`) and Figure 2 (variance evolution, `figures/fig2_variance_evolution.pdf`).
+- `provenance_example/` — two illustrative artifacts emitted per training run, as described in the manuscript (Sections 4.1–4.2): `split_manifest.json` (per-split SHA-256 hashes, frame counts, and the random seed) and `RunReport.json` (training hyperparameters, deterministic flag, seed, Python/CUDA/GPU environment identification, and final aggregate metrics). Absolute machine paths and the hostname are redacted to placeholders; hashes, seed, hyperparameters, and metrics are the real recorded values. These are shown as a concrete example of the per-run provenance format; the complete set of records, the full environment snapshots, and the training code are available from the corresponding author on reasonable academic request.
 
 ## Datasets
 

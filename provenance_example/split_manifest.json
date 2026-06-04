@@ -1,0 +1,25 @@
+{
+  "_comment": "Example split manifest emitted per training run (run: baseline_yolo26m_bf_seed42). Absolute machine paths have been redacted to placeholders; SHA-256 hashes, frame counts, and the seed are the real recorded values. One such file is serialized for every run in the study.",
+  "run_name": "baseline_yolo26m_bf_seed42",
+  "seed": 42,
+  "data_yaml": "<data_root>/human_brightfield/data.yaml",
+  "data_yaml_sha256": "cfe88139879bab57399a015a0d4323bdbcdc69295763d73a2cb2ab72d21bf391",
+  "base_path": "<data_root>/human_brightfield",
+  "splits": {
+    "train": {
+      "file": "<data_root>/human_brightfield/train.txt",
+      "frames": 6409,
+      "sha256": "d6b5b5da5cd06b4faed2e4bb93bc931c0f91ccb98dd16fe5bb984965aafb568d"
+    },
+    "val": {
+      "file": "<data_root>/human_brightfield/val.txt",
+      "frames": 1511,
+      "sha256": "c509e0484bd4681318c0471913770c741cccd76e69c347bb50ed90b2429c82e4"
+    },
+    "test": {
+      "file": "<data_root>/human_brightfield/test.txt",
+      "frames": 1702,
+      "sha256": "2de0d9da5c82d0fe54bfd8f5af5b56d20f249c843abe7b20cd36e1729f9b97c2"
+    }
+  }
+}
