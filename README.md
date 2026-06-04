@@ -130,8 +130,6 @@ Once the manuscript is accepted, this entry should be updated with the journal n
 }
 ```
 
-Replace the DOI placeholder once Zenodo mints the first release archive.
-
 ## Questions and feedback
 
 For methodological questions about the paper, please contact the corresponding author (see paper). For issues with the released code or CSV (e.g., reproduction discrepancies, dependency conflicts), please open a GitHub issue.
