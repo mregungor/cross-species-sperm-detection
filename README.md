@@ -107,7 +107,7 @@ If any reproduced value differs materially, please open an issue with your Pytho
 
 If you use this code, the released metric records, or build on the statistical analysis methodology, please cite both the manuscript and the archived release:
 
-### Manuscript (TO BE UPDATED)
+### Manuscript [PLACEHOLDER]
 
 ```bibtex
 @article{gungor2026crossspecies,
@@ -119,7 +119,7 @@ If you use this code, the released metric records, or build on the statistical a
 }
 ```
 
-### Software / data archive (TO BE UPDATED)
+### Software / data archive [PLACEHOLDER]
 
 ```bibtex
 @software{gungor2026repo,
