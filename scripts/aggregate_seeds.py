@@ -1,12 +1,12 @@
-"""Aggregate three-seed metric scores into mean +/- SD per (model, operating point).
+"""Aggregate multi-seed metric scores into mean +/- SD per (model, operating point).
 
 Reproduces Table 2 (source-domain baselines) and Table 4 (few-shot learning curve)
-from data/three_seed_results.csv.
+from data/multi_seed_results.csv.
 """
 from pathlib import Path
 import pandas as pd
 
-CSV = Path(__file__).resolve().parent.parent / "data" / "three_seed_results.csv"
+CSV = Path(__file__).resolve().parent.parent / "data" / "multi_seed_results.csv"
 
 
 def main() -> None:

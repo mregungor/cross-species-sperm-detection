@@ -1,7 +1,7 @@
 """Transfer-variance characterization: source vs zero-shot SD with Levene's test.
 
-Reproduces Table 5 from data/three_seed_results.csv. For each model, compares the
-three-seed source-domain mAP50-95 distribution against the three-seed bull
+Reproduces Table 5 from data/multi_seed_results.csv. For each model, compares the
+multi-seed source-domain mAP50-95 distribution against the multi-seed bull
 zero-shot mAP50 distribution under the null of equal variance.
 
 Note: we use the classical mean-centered Levene statistic (center="mean")
@@ -13,7 +13,7 @@ from pathlib import Path
 import pandas as pd
 from scipy import stats
 
-CSV = Path(__file__).resolve().parent.parent / "data" / "three_seed_results.csv"
+CSV = Path(__file__).resolve().parent.parent / "data" / "multi_seed_results.csv"
 
 
 def main() -> None:

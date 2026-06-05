@@ -18,7 +18,7 @@ It releases the **evaluation and statistical-analysis layer** of the study: the 
 ```
 cross-species-sperm-detection/
 ├── data/
-│   └── three_seed_results.csv     # Canonical per-seed metric records (4 architectures, 88 rows; name kept for stability, now five-seed)
+│   └── multi_seed_results.csv     # Canonical per-seed metric records (4 architectures, 88 rows; five source-training seeds)
 ├── scripts/
 │   ├── aggregate_seeds.py         # Tables 2 and 4 (source baselines, few-shot curve)
 │   ├── levene_variance.py         # Table 5 (variance characterization)
@@ -36,7 +36,7 @@ cross-species-sperm-detection/
 
 ## What this repository contains
 
-- `data/three_seed_results.csv` — scalar metric scores (mAP50, mAP50-95, precision, recall) for each combination of model × operating point × seed. This is the canonical, paper-of-record source for every numerical claim in the manuscript; all tables and figures listed below are derived from it.
+- `data/multi_seed_results.csv` — scalar metric scores (mAP50, mAP50-95, precision, recall) for each combination of model × operating point × seed. This is the canonical, paper-of-record source for every numerical claim in the manuscript; all tables and figures listed below are derived from it.
 - `scripts/aggregate_seeds.py` — produces Table 2 (source-domain baselines) and Table 4 (few-shot learning curve, both metrics) from the CSV.
 - `scripts/levene_variance.py` — produces Table 5 (transfer-variance characterization with the classical mean-centered Levene's test, matching the paper).
 - `scripts/paired_ttest_holm.py` — produces Table 6 (paired *t*-tests with Holm--Bonferroni correction, family size 24 per metric: 6 model pairs × 4 operating points). Sample sizes follow the multi-seed design: *n* = 5 at zero-shot and fs-20, *n* = 2 at fs-50 and fs-100.
@@ -53,7 +53,7 @@ All datasets used in the paper are publicly available:
 - **VISEM-Tracking** — Thambawita et al., 2023. <https://datasets.simula.no/visem-tracking/>
 - **DeepSperm** — Hidayatullah et al., 2021. Bull spermatozoa detection benchmark (available from the original authors' repository or on request).
 
-Note: this repository does **not** require dataset access to reproduce the statistical analysis. All numerical claims in the paper are derived from the released per-seed metric records in `data/three_seed_results.csv`. Re-running the training pipeline from raw data is out of scope for this release.
+Note: this repository does **not** require dataset access to reproduce the statistical analysis. All numerical claims in the paper are derived from the released per-seed metric records in `data/multi_seed_results.csv`. Re-running the training pipeline from raw data is out of scope for this release.
 
 ## Requirements
 
@@ -80,7 +80,7 @@ python scripts/subset_variance.py       # -> subset-selection variance table (Se
 python scripts/plot_learning_curve.py   # -> Figure 1 (learning curve) + Figure 2 (variance evolution)
 ```
 
-The scripts read the canonical `data/three_seed_results.csv` and emit aggregated statistics or figures; no external data download is required. The CSV is the per-seed scalar output of the training runs described in the paper.
+The scripts read the canonical `data/multi_seed_results.csv` and emit aggregated statistics or figures; no external data download is required. The CSV is the per-seed scalar output of the training runs described in the paper.
 
 ## Expected outputs
 

@@ -1,6 +1,6 @@
 """Plot the bull few-shot learning curve (paper Figure 1) and variance evolution (paper Figure 2).
 
-Reads data/three_seed_results.csv and writes figures/fig1_learning_curve.pdf and
+Reads data/multi_seed_results.csv and writes figures/fig1_learning_curve.pdf and
 figures/fig2_variance_evolution.pdf.
 """
 from pathlib import Path
@@ -8,7 +8,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 ROOT = Path(__file__).resolve().parent.parent
-CSV = ROOT / "data" / "three_seed_results.csv"
+CSV = ROOT / "data" / "multi_seed_results.csv"
 FIG = ROOT / "figures"
 FIG.mkdir(exist_ok=True)
 

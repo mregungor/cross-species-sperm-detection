@@ -1,4 +1,4 @@
-"""Paired t-tests on three-seed scalar metric scores with Holm--Bonferroni correction.
+"""Paired t-tests on multi-seed scalar metric scores with Holm--Bonferroni correction.
 
 Reproduces Table 6. Family size = 24 per metric (6 model pairs x 4 operating points).
 """
@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
-CSV = Path(__file__).resolve().parent.parent / "data" / "three_seed_results.csv"
+CSV = Path(__file__).resolve().parent.parent / "data" / "multi_seed_results.csv"
 MODELS = ["YOLOv8m", "YOLO11m", "YOLO26m", "YOLO26n"]
 OPS = ["bull_zs", "bull_fs20", "bull_fs50", "bull_fs100"]
 

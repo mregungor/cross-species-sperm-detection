@@ -10,7 +10,7 @@ from pathlib import Path
 import pandas as pd
 import numpy as np
 
-CSV = Path(__file__).resolve().parent.parent / "data" / "three_seed_results.csv"
+CSV = Path(__file__).resolve().parent.parent / "data" / "multi_seed_results.csv"
 
 
 def main() -> None:
