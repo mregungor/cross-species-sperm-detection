@@ -119,8 +119,6 @@ If you use this code, the released metric records, or build on the statistical a
 }
 ```
 
-Once the manuscript is accepted, this entry should be updated with the journal name, volume, and page range.
-
 ### Software / data archive
 
 ```bibtex
@@ -133,8 +131,6 @@ Once the manuscript is accepted, this entry should be updated with the journal n
   url     = {https://github.com/mregungor/cross-species-sperm-detection}
 }
 ```
-
-Replace the DOI placeholder once Zenodo mints the first release archive.
 
 ## Questions and feedback
 
