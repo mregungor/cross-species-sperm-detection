@@ -2,8 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-<!-- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX) -->
-<!-- Uncomment the DOI badge above and replace XXXXXXX after the first Zenodo release is minted. -->
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20785516.svg)](https://doi.org/10.5281/zenodo.20785516)
 
 Repository: <https://github.com/mregungor/cross-species-sperm-detection>
 
@@ -18,16 +17,17 @@ It releases the **evaluation and statistical-analysis layer** of the study: the 
 ```
 cross-species-sperm-detection/
 ├── data/
-│   └── multi_seed_results.csv     # Canonical per-seed metric records (4 architectures, 88 rows; five source-training seeds)
+│   └── multi_seed_results.csv     # Canonical per-seed metric records (4 architectures, 112 rows; five source-training seeds)
 ├── scripts/
 │   ├── aggregate_seeds.py         # Tables 2 and 4 (source baselines, few-shot curve)
 │   ├── levene_variance.py         # Table 5 (variance characterization)
-│   ├── paired_ttest_holm.py       # Table 6 (paired t-tests with Holm correction)
-│   ├── subset_variance.py         # Subset-selection variance (Section 5.9 table)
+│   ├── paired_ttest_holm.py       # Table 7 (paired t-tests with Holm correction)
+│   ├── subset_variance.py         # Table 6 (subset-selection variance, Section 5.9)
 │   └── plot_learning_curve.py     # Figures 1 and 2 (learning curve, variance evolution)
 ├── provenance_example/
 │   ├── RunReport.json             # Example per-run provenance record (redacted paths)
-│   └── split_manifest.json        # Example per-run split manifest with SHA-256 hashes
+│   ├── split_manifest.json        # Human source-domain train/val/test manifest (SHA-256 hashes)
+│   └── split_manifest_bull.json   # Bull (DeepSperm) transfer split manifest: 100-frame pool / 20-frame val / 220-frame held-out test
 ├── figures/                       # Generated outputs (fig1_*, fig2_*)
 ├── requirements.txt
 ├── LICENSE
@@ -36,13 +36,13 @@ cross-species-sperm-detection/
 
 ## What this repository contains
 
-- `data/multi_seed_results.csv` — scalar metric scores (mAP50, mAP50-95, precision, recall) for each combination of model × operating point × seed. This is the canonical, paper-of-record source for every numerical claim in the manuscript; all tables and figures listed below are derived from it.
+- `data/multi_seed_results.csv` — scalar metric scores (mAP50, mAP50-95, precision, recall) for each combination of model × operating point × seed. This is the canonical, paper-of-record source for every numerical claim in the manuscript; all tables and figures listed below are derived from it. Source-domain rows (`source_val`) are on the human validation split; all bull rows (`bull_zs`, `bull_fs20/50/100`, `bull_fs20_subset`) are computed on the 220-frame held-out DeepSperm test split, disjoint from the few-shot fine-tuning pools and the early-stopping validation split (see `provenance_example/split_manifest_bull.json`).
 - `scripts/aggregate_seeds.py` — produces Table 2 (source-domain baselines) and Table 4 (few-shot learning curve, both metrics) from the CSV.
 - `scripts/levene_variance.py` — produces Table 5 (transfer-variance characterization with the classical mean-centered Levene's test, matching the paper).
-- `scripts/paired_ttest_holm.py` — produces Table 6 (paired *t*-tests with Holm--Bonferroni correction, family size 24 per metric: 6 model pairs × 4 operating points). Sample sizes follow the multi-seed design: *n* = 5 at zero-shot and fs-20, *n* = 2 at fs-50 and fs-100.
-- `scripts/subset_variance.py` — produces the subset-selection variance table (manuscript Section 5.9): per architecture, the fs-20 subset-selection SD (four 20-frame draws at fixed initialization) versus the five-seed initialization SD, with the zero-shot SD for reference.
+- `scripts/paired_ttest_holm.py` — produces Table 7 (paired *t*-tests with Holm--Bonferroni correction, family size 24 per metric: 6 model pairs × 4 operating points). Sample sizes follow the multi-seed design: *n* = 5 at all four operating points (zero-shot, fs-20, fs-50, fs-100).
+- `scripts/subset_variance.py` — produces the subset-selection variance table (Table 6, manuscript Section 5.9): per architecture, the fs-20 subset-selection SD (four 20-frame draws at fixed initialization) versus the five-seed initialization SD, with the zero-shot SD for reference.
 - `scripts/plot_learning_curve.py` — produces Figure 1 (learning curve, `figures/fig1_learning_curve.pdf`) and Figure 2 (variance evolution, `figures/fig2_variance_evolution.pdf`).
-- `provenance_example/` — two illustrative artifacts emitted per training run, as described in the manuscript (Sections 4.1–4.2): `split_manifest.json` (per-split SHA-256 hashes, frame counts, and the random seed) and `RunReport.json` (training hyperparameters, deterministic flag, seed, Python/CUDA/GPU environment identification, and final aggregate metrics). Absolute machine paths and the hostname are redacted to placeholders; hashes, seed, hyperparameters, and metrics are the real recorded values. These are shown as a concrete example of the per-run provenance format; the complete set of records, the full environment snapshots, and the training code are available from the corresponding author on reasonable academic request.
+- `provenance_example/` — illustrative artifacts emitted per training run, as described in the manuscript (Sections 4.1–4.2): `split_manifest.json` (human source-domain per-split SHA-256 hashes, frame counts, and the random seed), `split_manifest_bull.json` (the bull/DeepSperm transfer partition: 100-frame fine-tuning pool, 20-frame early-stopping validation, and 220-frame held-out test on which all reported bull metrics are computed, with disjointness checks), and `RunReport.json` (training hyperparameters, deterministic flag, seed, Python/CUDA/GPU environment identification, and final aggregate metrics). Absolute machine paths and the hostname are redacted to placeholders; hashes, seed, hyperparameters, and metrics are the real recorded values. These are shown as a concrete example of the per-run provenance format; the complete set of records, the full environment snapshots, and the training code are available from the corresponding author on reasonable academic request.
 
 ## Datasets
 
@@ -88,17 +88,17 @@ Running `python scripts/levene_variance.py` should produce output matching **Tab
 
 ```
   model  src_SD  zs_SD  fs20_SD  Var(zs)/Var(src)  Var(zs)/Var(fs20)  Levene_p
-YOLO11m  0.0058 0.1761   0.0053             907.4             1112.0    0.0033
-YOLO26m  0.0091 0.0549   0.0007              36.7             5922.4    0.0901
-YOLO26n  0.0085 0.1527   0.0094             321.7              261.5    0.0890
-YOLOv8m  0.0074 0.1361   0.0096             334.3              200.5    0.0624
+YOLO11m  0.0058 0.1764   0.0138             911.1              163.9    0.0029
+YOLO26m  0.0091 0.0552   0.0020              37.1              768.2    0.0916
+YOLO26n  0.0085 0.1469   0.0222             297.9               43.6    0.0834
+YOLOv8m  0.0074 0.1342   0.0114             325.0              139.0    0.0733
 ```
 
 Running `python scripts/paired_ttest_holm.py` prints one table per metric (`=== mAP50 ===` and `=== mAP50_95 ===`); among the rows, the manuscript's headline pairwise comparison (YOLO26m vs YOLO11m at the 20-frame operating point) appears in the `mAP50_95` table as:
 
 ```
         op            pair  mean_diff      p  p_Holm
- bull_fs20 YOLO11m-YOLO26m    -0.0735 0.0001  0.0032
+ bull_fs20 YOLO11m-YOLO26m    -0.0663 0.0002  0.0036
 ```
 
 If any reproduced value differs materially, please open an issue with your Python and SciPy versions.
@@ -107,7 +107,7 @@ If any reproduced value differs materially, please open an issue with your Pytho
 
 If you use this code, the released metric records, or build on the statistical analysis methodology, please cite both the manuscript and the archived release:
 
-### Manuscript [PLACEHOLDER]
+### Manuscript
 
 ```bibtex
 @article{gungor2026crossspecies,
@@ -119,7 +119,7 @@ If you use this code, the released metric records, or build on the statistical a
 }
 ```
 
-### Software / data archive [PLACEHOLDER]
+### Software / data archive
 
 ```bibtex
 @software{gungor2026repo,
@@ -127,7 +127,7 @@ If you use this code, the released metric records, or build on the statistical a
   title   = {cross-species-sperm-detection: Analysis and statistical pipeline},
   year    = {2026},
   version = {v1.0.0},
-  doi     = {10.5281/zenodo.XXXXXXX},
+  doi     = {10.5281/zenodo.20785516},
   url     = {https://github.com/mregungor/cross-species-sperm-detection}
 }
 ```
