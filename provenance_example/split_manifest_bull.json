@@ -1,0 +1,68 @@
+{
+  "_comment": "Bull (DeepSperm) cross-species transfer split manifest. The DeepSperm benchmark (340 annotated frames) is partitioned, mirroring the human source-domain train/val/test discipline, into three disjoint splits: a 100-frame fine-tuning pool (with nested 20- and 50-frame subsets), a 20-frame validation split used for few-shot early stopping and for configuring the classical baseline, and a 220-frame held-out test split. ALL cross-species transfer metrics reported in the paper (zero-shot and few-shot) are computed on the 220-frame held-out test split, which is disjoint from every fine-tuning pool and from the validation split (verified at frame-file level: train pool cap test = 0, train pool cap val = 0). The split is random at frame level; DeepSperm contains 39 groups of pixel-identical images, and 22 test frames have an identical copy in the pool or validation split (excluding them changes fine-tuned mAP50 by -0.001 to +0.015; see README). Per-split SHA-256 hashes are of the image-list .txt files. Absolute machine paths are redacted to placeholders.",
+  "dataset": "DeepSperm (bull spermatozoa)",
+  "total_frames": 340,
+  "base_path": "<data_root>/bull_transfer",
+  "splits": {
+    "zeroshot_full": {
+      "file": "zeroshot_test.txt",
+      "role": "full DeepSperm set (340 frames); not used directly for reported metrics",
+      "frames": 340,
+      "sha256": "b8e1c53fa4a7adaebe1843862c663840a61df291735b0460cec80d9648bec2a8"
+    },
+    "fewshot_train_100": {
+      "file": "fewshot_train_100.txt",
+      "role": "few-shot fine-tuning pool (nested superset of train_50 and train_20)",
+      "frames": 100,
+      "sha256": "e5c09cd6ec1a24f6c0c6cb0df8b0bcb61b3a93636e6f52a2ae7bb242e56148f6"
+    },
+    "fewshot_train_50": {
+      "file": "fewshot_train_50.txt",
+      "role": "few-shot fine-tuning pool (50 frames; subset of train_100)",
+      "frames": 50,
+      "sha256": "05a816bc0854c1627304894814396360e4169e645d63cb75cd1c07533e5a9db6"
+    },
+    "fewshot_train_20": {
+      "file": "fewshot_train_20.txt",
+      "role": "few-shot fine-tuning pool (20 frames; subset of train_50)",
+      "frames": 20,
+      "sha256": "533fb957e96ff545cf8f853388067336538ea319dcf939376a6f6e7431a5e8cd"
+    },
+    "fewshot_val": {
+      "file": "fewshot_val.txt",
+      "role": "validation split for few-shot early stopping only; not used for reported metrics",
+      "frames": 20,
+      "sha256": "b0a3dbe8cf3ef409a8e466c7828824fde1600657cae9e113f66320bb3400c74d"
+    },
+    "fewshot_test": {
+      "file": "fewshot_test.txt",
+      "role": "held-out test split; ALL reported bull transfer metrics (zero-shot and few-shot) are computed here",
+      "frames": 220,
+      "sha256": "2b1bcbdb67f6ec4757862a8c7485eab446eba95ba1270b477b93721898f8b58c"
+    },
+    "fewshot_train_20_sub101": {
+      "file": "fewshot_train_20_sub101.txt",
+      "role": "alternative 20-frame fine-tuning subset for subset-selection variance analysis",
+      "frames": 20,
+      "sha256": "793e87f7f6b91a957ace325ca8e9a7c1165d0f03c4d4f288b36509fdf92ee3ee"
+    },
+    "fewshot_train_20_sub202": {
+      "file": "fewshot_train_20_sub202.txt",
+      "role": "alternative 20-frame fine-tuning subset for subset-selection variance analysis",
+      "frames": 20,
+      "sha256": "aaed51b2a1d433f19d6b3865afbc24e959e28b7beb65072dc7632f8d85974d51"
+    },
+    "fewshot_train_20_sub303": {
+      "file": "fewshot_train_20_sub303.txt",
+      "role": "alternative 20-frame fine-tuning subset for subset-selection variance analysis",
+      "frames": 20,
+      "sha256": "3763b321db3e59fd4bfdd2bc0bd456f6d5a252c109afce8b79346096000fdb90"
+    }
+  },
+  "partition_check": {
+    "train100_plus_val_plus_test": "100 + 20 + 220 = 340",
+    "train_pool_intersect_test": 0,
+    "train_pool_intersect_val": 0,
+    "val_intersect_test": 0
+  }
+}

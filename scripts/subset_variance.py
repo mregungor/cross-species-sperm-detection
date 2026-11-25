@@ -1,10 +1,10 @@
-"""Subset-selection variance (paper Section 5.9, Table tab:subset).
+"""Subset-selection variance (paper Section 3.5, Table 7).
 
 Compares, per architecture, the fs-20 subset-selection SD (four 20-frame draws at
 a fixed initialization seed: the original seed-42 subset plus three alternatives
 labelled by seeds 101/202/303 under operating_point ``bull_fs20_subset'') against
 the initialization SD (five-seed fs-20 SD at the fixed original subset). The
-zero-shot SD is shown for reference. All on bull validation mAP50.
+zero-shot SD is shown for reference. All on bull held-out test mAP50.
 """
 from pathlib import Path
 import pandas as pd

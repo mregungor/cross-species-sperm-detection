@@ -2,3 +2,6 @@ numpy>=1.24
 pandas>=2.0
 scipy>=1.11
 matplotlib>=3.7
+# evaluation/ scripts only (need DeepSperm images and trained checkpoints):
+# ultralytics>=8.4
+# opencv-python>=4.8

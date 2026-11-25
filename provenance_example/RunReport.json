@@ -1,5 +1,5 @@
 {
-  "_comment": "Example consolidated provenance record (RunReport) emitted per training run (run: baseline_yolo26m_bf_seed42, the seed-42 YOLO26m source-domain baseline). Absolute machine paths and the hostname have been redacted to placeholders; all hyperparameters, the seed, environment identification, and final aggregate metrics are the real recorded values. One such record is serialized for every run in the study; the full set is available from the corresponding author on reasonable academic request together with the training code.",
+  "_comment": "Example provenance record for one source-training run (baseline_yolo26m_bf_seed42, the seed-42 YOLO26m source-domain baseline), consolidated for release from the files every source-training run writes (args.yaml, split_manifest.json, system_info.txt, pip_freeze.txt, metrics_summary.json); fine-tuning runs record their arguments (args.yaml) and per-epoch and final metrics. Absolute machine paths and the hostname have been redacted to placeholders; all hyperparameters, the seed, environment identification, and final aggregate metrics are the real recorded values. The per-run files for all runs are available from the corresponding author on reasonable academic request together with the training code.",
   "run_name": "baseline_yolo26m_bf_seed42",
   "task": "detection",
   "dataset": "human_brightfield",
